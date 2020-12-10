@@ -1,23 +1,27 @@
 import './App.css';
 import React, { useState } from "react";
-//import Form from './Components/Form';
+import Form from './Components/Form';
+import NutriFacts from './Components/NutriFacts';
 // 1%20100grams%20apple       // git add -A
 
 function App() {
-  var APP_ID = "cb858920";
-  var APP_KEY = "23e79631876defaed65d9e35dd579c67";
-  const [input, setInput] = useState("");             // update code to include the %20, quantity, and size
-  var items = [];
+  const [name, setName] = useState(""); 
 
-  async function searchFood(e) {
-    e.preventDefault(); // prevents page from reloading  
-    var url = "https://api.edamam.com/api/nutrition-data?app_id=" + APP_ID + "&app_key=" + APP_KEY + "&ingr=" + input;
-    items = await fetch(url).then(res => res.json()); // await allows the fetch to complete before moving on to rest of code
-    //console.log(items.totalNutrients.ENERC_KCAL.quantity);
-    //console.log(items);
-   
-    setInput("");
-  }
+  // these are states for nutrition facts
+  const [calories, setCalories] = useState(0); 
+  const [fat, setFat] = useState(0); 
+  const [cholesterol, setCholesterol] = useState(0); 
+  const [sodium, setSodium] = useState(0); 
+  const [potassium, setPotassium] = useState(0); 
+  const [carbs, setCarbs] = useState(0);
+  const [fiber, setFiber] = useState(0);
+  const [sugar, setSugar] = useState(0);
+  const [protein, setProtein] = useState(0);
+  const [vitaminA, setVitaminA] = useState(0);
+  const [vitaminC, setVitaminC] = useState(0);
+  const [vitaminD, setVitaminD] = useState(0);
+  const [calcium, setCalcium] = useState(0);
+  const [iron, setIron] = useState(0);
 
   return (
     <div className="App">
@@ -25,19 +29,17 @@ function App() {
         <h1>Nutrition Tracker</h1>
       </header>
 
-      <form className="search-form" onSubmit={searchFood}>
-        <input type="text" className="food-input"  onChange={event => setInput(event.target.value)}  value={input} />
-        <button className="food-button" type="submit">
-          <i className="fas fa-plus-square"></i>
-        </button>
-        <div className="select">
-          <select className="filter-food">
-            <option value="all">All</option>
-            <option value="completed">Completed</option>
-            <option value="uncompleted">Uncompleted</option>
-          </select>
-        </div>
-      </form>
+      <Form
+        setName = {setName} setCalories = {setCalories} setFat = {setFat} setCholesterol = {setCholesterol} setSodium = {setSodium}
+        setPotassium = {setPotassium} setCarbs = {setCarbs} setFiber = {setFiber} setSugar = {setSugar} setProtein = {setProtein}
+        setVitaminA = {setVitaminA} setVitaminC = {setVitaminC} setVitaminD = {setVitaminD} setCalcium = {setCalcium} setIron = {setIron}
+      />
+
+      <NutriFacts 
+        name = {name}  calories = {calories} fat = {fat} cholesterol = {cholesterol} sodium = {sodium}
+        potassium = {potassium} carbs = {carbs} fiber = {fiber} sugar = {sugar} protein = {protein}
+        vitaminA = {vitaminA} vitaminC = {vitaminC} vitaminD = {vitaminD} calcium = {calcium} iron = {iron}
+      />
 
     </div>
   );
