@@ -1,8 +1,8 @@
 # Nutrition Tracker
-
+https://nutrition-tracker-dl.netlify.app/
 
 ## About
-Web app to find nutrition info and to keep track of your total nutrition intake.\
+Web app to search for nutrition info and to keep track of your total nutrition intake.\
 Implemented Edamam’s Nutritional Analysis API, allowing users to search for nutrition data.\
 Provide visuals for calories, protein, and fat intake using QuickChart API.\
 Implemented user login authentication with firebase.
