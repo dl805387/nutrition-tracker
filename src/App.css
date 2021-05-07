@@ -10,11 +10,6 @@ body {
     color: white;
 }
 
-.whiteIcon {
-    color: white;
-    cursor: pointer;
-}
-
 .error {
     margin: 0px;
     margin-bottom: 5px;
@@ -46,7 +41,7 @@ body {
     outline: none;
 }
 
-@media (min-width: 700px) 
+@media (min-width: 800px) 
 {
     .horzDisplay {
         display: flex;

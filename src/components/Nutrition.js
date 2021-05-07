@@ -36,7 +36,7 @@ function Nutrition(props) {
     const [chart, setChart] = useState([]);
     const [tempChart, setTempChart] = useState([]);
 
-    const [nutriList, setNutriList] = useState([]);
+    const [foodList, setFoodList] = useState([]);
 
     // Uses Edamam's api to get nutrition data
     const getNutrition = async () => {
@@ -93,9 +93,9 @@ function Nutrition(props) {
         setTotalProtein(protein + totalProtein);
         setTotalFat(fat + totalFat);
         
-        setNutriList(
-            [].concat(  
-                <div key={nutriList.length}>
+        setFoodList(
+            foodList.concat(  
+                <div key={foodList.length} className="botSpacing">
                     <table>
                         <tbody>
                             <tr>
@@ -116,7 +116,7 @@ function Nutrition(props) {
                         </tbody>
                     </table>
                 </div>
-            ).concat(nutriList)
+            )
         );
     }
 
@@ -181,7 +181,7 @@ function Nutrition(props) {
         .setHeight(300)
         .setBackgroundColor('transparent');
   
-        setChart(<img src={myChart.getUrl()} alt="Chart" style={{width: "400px", height:"400px"}}></img>);
+        setChart(<img src={myChart.getUrl()} alt="Chart" style={{width: "350px", height:"350px"}}></img>);
     }
 
     // reset total intake to 0
@@ -277,75 +277,95 @@ function Nutrition(props) {
     }, []);
 
     return (
-        <div>
-            <div className="horz">
-                <div className="apiForm">
-                    <div>
-                        <label>Food</label>
-                        <input className="inputStyle" value={food} type="text" placeholder="ex: cheesecake" onChange={e => {setFood(e.target.value)}}></input>
-                    </div>
-                    
-                    <div>
-                        <label>Quantity</label>
-                        <Autocomplete 
-                            suggestions={["small", "medium", "large", "cup", "pint", "quart", "gallon", "teaspoon", "tablespoon", "liter"]} 
-                            quantity={quantity} 
-                            setQuantity={setQuantity}
-                        />
-                    </div>
-
-                    {error && <p className="error">need to fill out both fields</p>}
-                    {badSearch && <p className="error">could not find nutrition data</p>}
-
-                    <div className="labelAndIcon">
-                        <div className="searchLabel">
-                            <label>Search</label>
+        <div className="horzDisplay">
+            <div className="section">
+                <div className="horz">
+                    <div className="apiForm">
+                        <div>
+                            <label>Food</label>
+                            <input className="inputStyle" value={food} type="text" placeholder="ex: cheesecake" onChange={e => {setFood(e.target.value)}}></input>
                         </div>
-                        <FontAwesomeIcon icon="search-plus" size="2x" className="searchIcon" onClick={e => {e.preventDefault(); getNutrition()}} />
+                        
+                        <div>
+                            <label>Quantity</label>
+                            <Autocomplete 
+                                suggestions={["small", "medium", "large", "cup", "pint", "quart", "gallon", "teaspoon", "tablespoon", "liter"]} 
+                                quantity={quantity} 
+                                setQuantity={setQuantity}
+                            />
+                        </div>
+
+                        {error && <p className="error">need to fill out both fields</p>}
+                        {badSearch && <p className="error">could not find nutrition data</p>}
+
+                        <div className="labelAndIcon">
+                            <div className="searchLabel">
+                                <label>Search</label>
+                            </div>
+                            <FontAwesomeIcon icon="search-plus" size="2x" className="searchIcon" onClick={e => {e.preventDefault(); getNutrition()}} />
+                        </div>
+                    </div>
+
+                    <div>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>{tableTitle()}</th>
+                                </tr>
+                                <tr>
+                                    <td>Calories:<label className="quantity">{calories}</label></td>
+                                </tr>
+                                <tr>
+                                    <td>Carbs:<label className="quantity">{carbs}</label></td>
+                                </tr>
+                                <tr>
+                                    <td>Protein:<label className="quantity">{protein}</label></td>
+                                </tr>
+                                <tr>
+                                    <td>Fat:<label className="quantity">{fat}</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div className="track">
+                        <button className="trackBtn" onClick={e => {e.preventDefault(); updateIntake();}}>Track Nutrition</button>
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>{tableTitle()}</th>
-                            </tr>
-                            <tr>
-                                <td>Calories:<label className="quantity">{calories}</label></td>
-                            </tr>
-                            <tr>
-                                <td>Carbs:<label className="quantity">{carbs}</label></td>
-                            </tr>
-                            <tr>
-                                <td>Protein:<label className="quantity">{protein}</label></td>
-                            </tr>
-                            <tr>
-                                <td>Fat:<label className="quantity">{fat}</label></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h2 className="chartTitle">Source of Calories</h2>
+                {tempChart}
 
-                    <div className="track">
-                    <button className="trackBtn" onClick={e => {e.preventDefault(); updateIntake();}}>Track Nutrition</button>
-                    </div>
-                </div>
             </div>
 
             
-            <div className="titleAndReset">
-                <div>
-                    <h2 className="chartTitle">Source of Calories</h2>
+
+
+            <div className="section">
+                <div className="sec">
+                    <div className="titleAndReset">
+                        <div>
+                            <h2 className="chartTitle">Total Nutriton Intake</h2>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                    {chart}
+                            <button className="roundedBtn" onClick={e => {e.preventDefault(); resetIntake();}}>Reset</button>
+                    </div>
+
+
+                    <div className="panel">
+                        <h2 className="listTitle">Food List</h2>
+                        <div className="scroll">
+                            {foodList}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button className="roundedBtn" onClick={e => {e.preventDefault(); resetIntake();}}>Reset</button>
-                </div>
+
+
             </div>
-
-            {tempChart}
-            {chart}
-
-            {nutriList}
 
         </div>
     );

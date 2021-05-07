@@ -32,6 +32,7 @@ th, td {
 
 .apiForm {
     margin: 20px;
+    width: 200px;
 }
 
 .chartTitle {
@@ -59,3 +60,36 @@ th, td {
     cursor: pointer;
 }
 
+.panel {
+    width: 200px;
+    height: 600px;
+}
+
+.scroll {
+    height: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.botSpacing {
+    margin-bottom: 30px;
+}
+
+.listTitle {
+    width: 200px;
+    text-align: center;
+    -webkit-box-shadow: 0 10px 10px -10px #000000;
+    -moz-box-shadow: 0 10px 10px -10px #000000;
+    box-shadow: 0 10px 10px -10px #000000;
+}
+
+@media (min-width: 1175px) 
+{
+
+    .sec {
+        display: flex;
+    }
+
+}

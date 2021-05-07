@@ -26,7 +26,7 @@ function Dashboard(props) {
     }
 
     useEffect(() => {
-        
+        getDogPic();
     }, []);
 
     return (
@@ -34,32 +34,27 @@ function Dashboard(props) {
 
             <div className="horzDisplay">
 
-                
-
-                <div className="nutritionWProfile">         
-                    <div className="nutritionSection">
-                        <Nutrition 
-                            totalCal = {totalCal}
-                            totalCarb = {totalCarb}
-                            totalProtein = {totalProtein}
-                            totalFat = {totalFat}
-                            setTotalCal = {setTotalCal}
-                            setTotalCarb = {setTotalCarb}
-                            setTotalProtein = {setTotalProtein}
-                            setTotalFat = {setTotalFat}
-                        />
+                <div className="section">
+                    <p>Welcome, {user.email} </p>
+                    <div>
+                        {dogPic !== "" && (<img src={dogPic} alt="Profile Pic" className="profilePic"></img>)}
                     </div>
+                    <button className="roundedBtn" onClick={()=> {handleLogout();}}>Logout</button>
+                </div>
 
-                    <div className="profile">
-                        <div className="inner">
-                            <p>Welcome, {user.email} </p>
-                            <div>
-                                {dogPic !== "" && (<img src={dogPic} alt="Profile Pic" className="profilePic"></img>)}
-                            </div>
-                            <button className="roundedBtn" onClick={()=> {handleLogout();}}>Logout</button>
-                        </div>
-                    </div>
-                </div> 
+                        
+                <div className="section"> 
+                    <Nutrition 
+                        totalCal = {totalCal}
+                        totalCarb = {totalCarb}
+                        totalProtein = {totalProtein}
+                        totalFat = {totalFat}
+                        setTotalCal = {setTotalCal}
+                        setTotalCarb = {setTotalCarb}
+                        setTotalProtein = {setTotalProtein}
+                        setTotalFat = {setTotalFat}
+                    />
+                </div>             
 
             </div>
 
