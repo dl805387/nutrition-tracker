@@ -1,5 +1,16 @@
-# nutrition-tracker
-Web app to find nutrition info and to keep track of your total nutrition intake.
+# Nutrition Tracker
+
+
+## About
+Web app to find nutrition info and to keep track of your total nutrition intake.\
+Implemented Edamam’s Nutritional Analysis API, allowing users to search for nutrition data.\
+Provide visuals for calories, protein, and fat intake using QuickChart API.\
+Implemented user login authentication with firebase.
+
+## Technologies
+* React
+* Firebase
+* Axios
 
 
 # Getting Started with Create React App
