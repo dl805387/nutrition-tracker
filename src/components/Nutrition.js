@@ -300,9 +300,9 @@ function Nutrition(props) {
 
                         <div className="labelAndIcon">
                             <div className="searchLabel">
-                                <label>Search</label>
+                                <label style={{cursor: "pointer"}} onClick={e => {e.preventDefault(); getNutrition()}}>Search</label>
                             </div>
-                            <FontAwesomeIcon icon="search-plus" size="2x" className="searchIcon" onClick={e => {e.preventDefault(); getNutrition()}} />
+                            <FontAwesomeIcon icon="search-plus" size="2x" className="searchIcon" />
                         </div>
                     </div>
 
@@ -351,8 +351,8 @@ function Nutrition(props) {
 
                     
                     <div>
-                    {chart}
-                            <button className="roundedBtn" onClick={e => {e.preventDefault(); resetIntake();}}>Reset</button>
+                        {chart}
+                        <button className="roundedBtn" onClick={e => {e.preventDefault(); resetIntake();}}>Reset</button>
                     </div>
 
 
