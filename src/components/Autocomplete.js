@@ -125,7 +125,7 @@ class Autocomplete extends Component {
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     value={quantity}
-                    placeholder="ex: large, cup, 100grams"
+                    placeholder="ex: large, cup, 5grams"
                 />
                 {suggestionsListComponent}
             </Fragment>

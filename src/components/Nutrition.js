@@ -302,7 +302,7 @@ function Nutrition(props) {
                             <div className="searchLabel">
                                 <label style={{cursor: "pointer"}} onClick={e => {e.preventDefault(); getNutrition()}}>Search</label>
                             </div>
-                            <FontAwesomeIcon icon="search-plus" size="2x" className="searchIcon" />
+                            <FontAwesomeIcon icon="search-plus" size="2x" className="searchIcon" onClick={e => {e.preventDefault(); getNutrition()}} />
                         </div>
                     </div>
 
